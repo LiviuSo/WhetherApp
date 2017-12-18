@@ -33,4 +33,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile "org.jetbrains.anko:anko-common:$anko_version"
     implementation "com.android.support:recyclerview-v7:$support_version"
+    compile "com.google.code.gson:gson:2.8.0"
 }

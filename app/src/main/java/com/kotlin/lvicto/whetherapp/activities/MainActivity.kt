@@ -6,6 +6,11 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.kotlin.lvicto.whetherapp.R
 import com.kotlin.lvicto.whetherapp.adapters.ForecastListAdapter
+import com.kotlin.lvicto.whetherapp.net.ForecastRequest
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.uiThread
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +23,17 @@ class MainActivity : AppCompatActivity() {
         forecastList.adapter = ForecastListAdapter(items)
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        doAsync {
+            val forecastRes = ForecastRequest("97005").execute()
+            uiThread {
+                longToast("Request performed: $forecastRes" )
+            }
+        }
+    }
+
     private val items = listOf(
             "Mon 6/23 - Sunny - 31/17",
             "Tue 6/24 - Foggy - 21/8",
@@ -25,6 +41,5 @@ class MainActivity : AppCompatActivity() {
             "Thurs 6/26 - Rainy - 18/11",
             "Fri 6/27 - Fogy - 18/11",
             "Sat 6/28 - TRAPPED IN WEATHERSTATION - 18/11",
-            "Sun 6/29 - Sunny - 18/11"
-    )
+            "Sun 6/29 - Sunny - 18/11")
 }
