@@ -8,6 +8,7 @@ import com.kotlin.lvicto.whetherapp.R
 import com.kotlin.lvicto.whetherapp.adapters.ForecastListAdapter
 import com.kotlin.lvicto.whetherapp.domain.RequestForecastCommand
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
 
 
@@ -23,7 +24,9 @@ class MainActivity : AppCompatActivity() {
         doAsync {
             val forecastRes = RequestForecastCommand("97005").execute()
             uiThread {
-                forecastList.adapter = ForecastListAdapter(forecastRes)
+                forecastList.adapter = ForecastListAdapter(forecastRes) {
+                    toast(it.date)
+                }
             }
         }
     }
