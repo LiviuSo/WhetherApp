@@ -1,7 +1,6 @@
-package com.kotlin.lvicto.whetherapp.net
+package com.kotlin.lvicto.whetherapp.data
 
 import com.google.gson.Gson
-import com.kotlin.lvicto.whetherapp.data.ForecastResult
 import java.net.URL
 
 class ForecastRequest(private val zipCode: String) {
@@ -9,7 +8,7 @@ class ForecastRequest(private val zipCode: String) {
     companion object {
         private val APP_ID = "f637e584acb8529afb2e0d7a30497337"
         private val BASE_URL = "http://api.openweathermap.org/data/2.5/forecast/daily?mode=json&units=metric"
-        private val COMPLETE_URL = "$BASE_URL&APPID=$APP_ID&zip="
+        private val COMPLETE_URL = "${BASE_URL}&APPID=${APP_ID}&zip="
     }
 
     fun execute(): ForecastResult {

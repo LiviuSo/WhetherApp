@@ -1,4 +1,4 @@
-package com.kotlin.lvicto.whetherapp.domain
+package com.kotlin.lvicto.whetherapp.domain.mappers
 
 import com.kotlin.lvicto.whetherapp.data.Forecast
 import com.kotlin.lvicto.whetherapp.data.ForecastResult
