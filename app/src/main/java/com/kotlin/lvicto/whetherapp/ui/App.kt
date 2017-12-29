@@ -1,7 +1,7 @@
 package com.kotlin.lvicto.whetherapp.ui
 
 import android.app.Application
-import com.kotlin.lvicto.whetherapp.ui.utils.DelegatesExt
+import com.kotlin.lvicto.whetherapp.extensions.DelegatesExt
 
 
 class App : Application() {

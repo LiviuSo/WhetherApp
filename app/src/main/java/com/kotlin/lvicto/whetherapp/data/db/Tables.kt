@@ -1,6 +1,13 @@
 package com.kotlin.lvicto.whetherapp.data.db
 
 
+object CityForecastTable {
+    val NAME = "CityForecast"
+    val ID = "_id"
+    val CITY = "city"
+    val COUNTRY = "country"
+}
+
 object DayForecastTable {
     val NAME = "DayForecast"
     val ID = "_id"

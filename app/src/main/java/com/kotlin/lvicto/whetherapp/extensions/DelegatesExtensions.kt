@@ -1,4 +1,5 @@
-package com.kotlin.lvicto.whetherapp.ui.utils
+package com.kotlin.lvicto.whetherapp.extensions
+
 
 import kotlin.reflect.KProperty
 

@@ -1,9 +1,9 @@
-package com.kotlin.lvicto.whetherapp.data
+package com.kotlin.lvicto.whetherapp.data.server
 
 import com.google.gson.Gson
 import java.net.URL
 
-class ForecastRequest(private val zipCode: String) {
+class ForecastRequest(private val zipCode: Long) {
 
     companion object {
         private val APP_ID = "f637e584acb8529afb2e0d7a30497337"

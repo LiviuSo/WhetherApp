@@ -1,17 +1,18 @@
 package com.kotlin.lvicto.whetherapp.domain.mappers
 
-import com.kotlin.lvicto.whetherapp.data.Forecast
-import com.kotlin.lvicto.whetherapp.data.ForecastResult
+import com.kotlin.lvicto.whetherapp.data.server.Forecast
+import com.kotlin.lvicto.whetherapp.data.server.ForecastResult
 import com.kotlin.lvicto.whetherapp.domain.model.ForecastList
-import java.text.DateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 import com.kotlin.lvicto.whetherapp.domain.model.Forecast as ModelForecast
 
+
 class ForecastDataMapper {
 
-    fun convertFromDataModel(forecast: ForecastResult): ForecastList {
-        return ForecastList(forecast.city.name,
+    fun convertFromDataModel(zipCode: Long, forecast: ForecastResult): ForecastList {
+        return ForecastList(zipCode,
+                forecast.city.name,
                 forecast.city.country,
                 convertForecastListToDomain(forecast.list))
     }
@@ -24,8 +25,8 @@ class ForecastDataMapper {
         }
     }
 
-    private fun convertForecastItemToDomain(forecast: com.kotlin.lvicto.whetherapp.data.Forecast): ModelForecast {
-        return ModelForecast(convertDate(forecast.dt),
+    private fun convertForecastItemToDomain(forecast: Forecast): ModelForecast {
+        return ModelForecast(forecast.dt,
                 forecast.weather[0].description,
                 forecast.temp.max.toInt(),
                 forecast.temp.min.toInt(),
@@ -33,9 +34,4 @@ class ForecastDataMapper {
     }
 
     private fun generateIconUrl(iconCode: String): String  = "http://openweathermap.org/img/w/$iconCode.png"
-
-    private fun convertDate(date: Long): String {
-        val df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
-        return df.format(date)
-    }
 }
