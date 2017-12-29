@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.kotlin.lvicto.whetherapp.R
-import com.kotlin.lvicto.whetherapp.domain.command.RequestForecastCommand
+import com.kotlin.lvicto.whetherapp.domain.commands.RequestForecastCommand
 import com.kotlin.lvicto.whetherapp.ui.adapters.ForecastListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync

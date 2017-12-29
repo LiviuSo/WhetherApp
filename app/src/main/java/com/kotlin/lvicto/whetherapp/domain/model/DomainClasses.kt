@@ -1,5 +1,6 @@
 package com.kotlin.lvicto.whetherapp.domain.model
 
+
 data class ForecastList(val id: Long,
                         val city: String,
                         val country: String,
