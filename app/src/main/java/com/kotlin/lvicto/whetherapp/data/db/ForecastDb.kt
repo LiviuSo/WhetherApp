@@ -1,11 +1,9 @@
 package com.kotlin.lvicto.whetherapp.data.db
 
 import com.kotlin.lvicto.whetherapp.domain.datasource.ForecastDataSource
+import com.kotlin.lvicto.whetherapp.domain.model.Forecast
 import com.kotlin.lvicto.whetherapp.domain.model.ForecastList
-import com.kotlin.lvicto.whetherapp.extensions.clear
-import com.kotlin.lvicto.whetherapp.extensions.parseList
-import com.kotlin.lvicto.whetherapp.extensions.parseOpt
-import com.kotlin.lvicto.whetherapp.extensions.toVarargArray
+import com.kotlin.lvicto.whetherapp.extensions.*
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 
@@ -42,5 +40,12 @@ class ForecastDb(private val forecastDbHelper: ForecastDbHelper = ForecastDbHelp
                 }
             }
         }
+    }
+
+    override fun requestDayForecast(id: Long): Forecast? = forecastDbHelper.use {
+        val forecast = select(DayForecastTable.NAME).byId(id).
+                parseOpt { DayForecast(HashMap(it)) }
+
+        if (forecast != null) dataMapper.convertDayToDomain(forecast) else null
     }
 }

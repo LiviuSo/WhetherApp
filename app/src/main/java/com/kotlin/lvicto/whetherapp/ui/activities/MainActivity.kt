@@ -8,7 +8,7 @@ import com.kotlin.lvicto.whetherapp.domain.commands.RequestForecastCommand
 import com.kotlin.lvicto.whetherapp.ui.adapters.ForecastListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
 
 
@@ -24,8 +24,10 @@ class MainActivity : AppCompatActivity() {
             val forecastRes = RequestForecastCommand(97005).execute()
             uiThread {
                 forecastList.adapter = ForecastListAdapter(forecastRes) {
-                    toast(it.description)
+                    startActivity<DetailActivity>(DetailActivity.ID to it.id,
+                            DetailActivity.CITY_NAME to forecastRes.city)
                 }
+                title = "${forecastRes.city} (${forecastRes.country})"
             }
         }
     }
